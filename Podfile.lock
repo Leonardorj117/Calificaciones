@@ -1,0 +1,21 @@
+PODS:
+  - SCLAlertView (0.8.1)
+
+DEPENDENCIES:
+  - SCLAlertView (from `https://github.com/vikmeup/SCLAlertView-Swift.git`)
+
+EXTERNAL SOURCES:
+  SCLAlertView:
+    :git: https://github.com/vikmeup/SCLAlertView-Swift.git
+
+CHECKOUT OPTIONS:
+  SCLAlertView:
+    :commit: f08ec93c299a221210e59462c84c79410050e5b7
+    :git: https://github.com/vikmeup/SCLAlertView-Swift.git
+
+SPEC CHECKSUMS:
+  SCLAlertView: 776813fb1f62248965f37cb7edf4088ee6394460
+
+PODFILE CHECKSUM: 70ac0731b431b4821b97c55086be7dad38785f59
+
+COCOAPODS: 1.11.3
