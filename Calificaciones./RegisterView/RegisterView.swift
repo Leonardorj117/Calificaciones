@@ -33,6 +33,7 @@ class RegisterView: UIViewController {
     //Buttons.
     @IBOutlet weak var buttonAverage:UIButton!
     @IBOutlet weak var buttonRegister:UIButton!
+    
     //Views.
     @IBOutlet weak var viewBackGround:UIView!
     @IBOutlet weak var viewFond:UIView!
@@ -47,8 +48,12 @@ class RegisterView: UIViewController {
     private var math:Double     = Double()
     private var physical:Double = Double()
     private var average:Double  = Double()
+    private var statusOkName:Bool     = false
+    private var statusOkSpanish:Bool  = false
+    private var statusOkScience:Bool  = false
+    private var statusOkMath:Bool     = false
+    private var statusOkPhysical:Bool = false
     public  var student:Student!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,19 +74,24 @@ class RegisterView: UIViewController {
     
     //TextFields
     @IBAction func actionFieldName(_ sender: Any) {
-        validateFieldName(TextField: self.fieldName, Label: self.labelErrorName)
+        self.statusOkName = validateFieldName(TextField: self.fieldName, Label: self.labelErrorName)
+        self.availableButtos()
     }
     @IBAction func actionFieldSpanish(_ sender: Any) {
-        validateFieldRating(TextField: self.fieldSpanish, Label: self.labelErrorSpanish)
+        self.statusOkSpanish = validateFieldRating(TextField: self.fieldSpanish, Label: self.labelErrorSpanish)
+        self.availableButtos()
     }
     @IBAction func actionFieldScience(_ sender: Any) {
-        validateFieldRating(TextField: self.fieldScience, Label: self.labelErrorScience)
+        self.statusOkScience = validateFieldRating(TextField: self.fieldScience, Label: self.labelErrorScience)
+        self.availableButtos()
     }
     @IBAction func actionFieldMath(_ sender: Any) {
-        validateFieldRating(TextField: self.fieldMath, Label: self.labelErrorMath)
+        self.statusOkMath = validateFieldRating(TextField: self.fieldMath, Label: self.labelErrorMath)
+        self.availableButtos()
     }
     @IBAction func actionFieldPhysical(_ sender: Any) {
-        validateFieldRating(TextField: self.fieldPhysical, Label: self.labelErrorPhysical)
+        self.statusOkPhysical = validateFieldRating(TextField: self.fieldPhysical, Label: self.labelErrorPhysical)
+        self.availableButtos()
     }
     
     //Buttons
@@ -103,37 +113,25 @@ class RegisterView: UIViewController {
             self.physical = Double(pyshical) ?? 0.0
         }
         
-        self.average = (self.spanish + self.science + self.math + self.physical) / 4
-        self.labelAverage.text = "Promedio : \(String(format: "%.2f", average))"
+        if statusOkName,statusOkSpanish,statusOkScience,statusOkMath,statusOkPhysical{
+            self.average = (self.spanish + self.science + self.math + self.physical) / 4
+            self.labelAverage.text = "Promedio : \(String(format: "%.2f", average))"
+        }else{
+            SCLAlertView().showError("Error", subTitle: "Completa los campos corrctamente para poder continuar.", closeButtonTitle: "Ok", animationStyle: .rightToLeft)
+        }
     }
     
     @IBAction func registerAction(_ sender:UIButton){
-        
-        if self.labelAverage.text != ""{
-            do{
-                let currentStudent = Student(context: self.context)
-                currentStudent.name = self.name
-                currentStudent.spanish = self.spanish
-                currentStudent.science = self.science
-                currentStudent.math = self.math
-                currentStudent.physical = self.physical
-                currentStudent.average = self.average
-                try context.save()
-                SCLAlertView().showSuccess("Registrado", subTitle: "Estudiante registrado.", closeButtonTitle: "Aceptar", animationStyle: .bottomToTop)
-            }catch{
-                SCLAlertView().showError("Error", subTitle: "Error al guardar los datos.", closeButtonTitle: "Aceptar", animationStyle: .bottomToTop)
-            }
+        if statusOkName,statusOkSpanish,statusOkScience,statusOkMath,statusOkPhysical{
+            saveStudent()
         }else{
-            SCLAlertView().showInfo("Cuidado", subTitle: "Para continuar tienes que promediar.", animationStyle: .bottomToTop)
+            SCLAlertView().showError("Error", subTitle: "Completa los campos corrctamente para poder continuar.", closeButtonTitle: "Ok", animationStyle: .rightToLeft)
         }
-        
-        
-        
     }
     
     //MARK: - Private Methods.
     
-    private func validateFieldRating(TextField:UITextField,Label:UILabel){
+    private func validateFieldRating(TextField:UITextField,Label:UILabel) -> Bool{
         let isDouble = isDouble(text: TextField.text!)
         let rating = Double(TextField.text ?? "0.0")
         if TextField.text == ""{
@@ -155,15 +153,15 @@ class RegisterView: UIViewController {
             Label.text = ""
             TextField.layer.borderColor = UIColor.blue.cgColor
             TextField.layer.borderWidth = 1.0
+            return true
         }
-        
-        self.availableButtos()
+        return false
     }
     
-    private func validateFieldName(TextField:UITextField,Label:UILabel){
+    private func validateFieldName(TextField:UITextField,Label:UILabel) -> Bool{
         
         if !validateFieldName(enteredString: self.fieldName.text ?? "") {
-            Label.text = "No puedes ingresar números o caracteres especiales."
+            Label.text = "Ingresa más de 2 caracteres, sin caracteres especiales."
             Label.textColor = .red
             TextField.layer.borderColor = UIColor.red.cgColor
             TextField.layer.borderWidth = 1.0
@@ -176,20 +174,47 @@ class RegisterView: UIViewController {
             Label.text = ""
             TextField.layer.borderColor = UIColor.systemIndigo.cgColor
             TextField.layer.borderWidth = 1.0
+            return true
         }
-        self.availableButtos()
-    }
-     
-    func validateFieldName(enteredString:String) -> Bool {
+        return false
         
-        let validationFormat = "[a-zA-Z\\s]+"
+    }
+    
+    private func saveStudent(){
+        if self.labelAverage.text != ""{
+            do{
+                let currentStudent = Student(context: self.context)
+                currentStudent.name = self.name
+                currentStudent.spanish = self.spanish
+                currentStudent.science = self.science
+                currentStudent.math = self.math
+                currentStudent.physical = self.physical
+                currentStudent.average = self.average
+                try context.save()
+                SCLAlertView().showSuccess("Registrado", subTitle: "Estudiante registrado.", closeButtonTitle: "Aceptar", animationStyle: .bottomToTop)
+                self.fieldName.text = ""
+                self.fieldSpanish.text = ""
+                self.fieldScience.text = ""
+                self.fieldMath.text = ""
+                self.fieldPhysical.text = ""
+                self.labelAverage.text = ""
+            }catch{
+                SCLAlertView().showError("Error", subTitle: "Error al guardar los datos.", closeButtonTitle: "Aceptar", animationStyle: .bottomToTop)
+            }
+        }else{
+            SCLAlertView().showInfo("Cuidado", subTitle: "Para continuar tienes que promediar.", animationStyle: .bottomToTop)
+        }
+    }
+    
+    func validateFieldName(enteredString:String) -> Bool {
+        let validationFormat = "[a-zA-Z\\s]{2,25}+"
         let fieldPredicate = NSPredicate(format:"SELF MATCHES %@", validationFormat)
         return fieldPredicate.evaluate(with: enteredString)
     }
     
     
     func availableButtos() {
-        if validateAllIputs() {
+        if validateAllInputs() {
             buttonAverage.isEnabled = true
             buttonRegister.isEnabled = true
             buttonAverage.alpha = 1.0
@@ -202,7 +227,7 @@ class RegisterView: UIViewController {
         }
     }
     
-    func validateAllIputs() -> Bool{
+    func validateAllInputs() -> Bool{
         var isOk = false
         if fieldName.text != "" && fieldSpanish.text != "" &&  fieldScience.text != "" && fieldMath.text != "" && fieldPhysical.text != "" {
             isOk = true
@@ -216,7 +241,7 @@ class RegisterView: UIViewController {
     
     @objc private func keyboardUp(){
         if self.view.frame.origin.y == 0{
-            self.view.frame.origin.y = -100
+            self.view.frame.origin.y = -90
         }
     }
     
