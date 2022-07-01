@@ -91,7 +91,7 @@ class AverageView: UIViewController {
             if item >= 8 && item <= 10.0{
                 self.greaterThan8.append(item)
             }
-            if item <= 7{
+            if item < 8{
                 self.lessThan8.append(item)
             }
         }

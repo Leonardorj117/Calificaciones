@@ -1,0 +1,15 @@
+
+/* Class = "UILabel"; text = "General"; ObjectID = "0ok-t7-1fw"; */
+"0ok-t7-1fw.text" = "General";
+
+/* Class = "UIButton"; configuration.title = "Promedio General."; ObjectID = "J7p-Mo-C0A"; */
+"J7p-Mo-C0A.configuration.title" = "Promedio General.";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "J7p-Mo-C0A"; */
+"J7p-Mo-C0A.normalTitle" = "Button";
+
+/* Class = "UIButton"; configuration.title = "Registrar."; ObjectID = "ZGH-p7-7dp"; */
+"ZGH-p7-7dp.configuration.title" = "Registrar.";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "ZGH-p7-7dp"; */
+"ZGH-p7-7dp.normalTitle" = "Button";

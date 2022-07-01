@@ -12,6 +12,7 @@ class DetailView: UIViewController {
     //MARK: - Outlets
     
     //Labels.
+    @IBOutlet weak var labelID:UILabel!
     @IBOutlet weak var labelName:UILabel!
     @IBOutlet weak var labelSpanishScore:UILabel!
     @IBOutlet weak var labelSciencehScore:UILabel!
@@ -28,6 +29,7 @@ class DetailView: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.labelID.customLabel()
         self.labelName.customLabel()
         self.labelSpanishScore.customLabel()
         self.labelSciencehScore.customLabel()
@@ -44,6 +46,7 @@ class DetailView: UIViewController {
     //MARK: - Methods
     
     private func fillLabels(student:Student){
+        self.labelID.text = "\(student.id)"
         self.labelName.text = " " + student.name!
         self.labelSpanishScore.text = " \(student.spanish)"
         self.labelSciencehScore.text = " \(student.science)"
@@ -54,11 +57,3 @@ class DetailView: UIViewController {
     
 }
 
-extension UIImageView {
-    func roundCircle() {
-        self.contentMode = UIView.ContentMode.scaleAspectFill
-        self.layer.cornerRadius = self.frame.height / 2
-        self.layer.masksToBounds = false
-        self.clipsToBounds = true
-    }
-}

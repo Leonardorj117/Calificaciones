@@ -12,12 +12,14 @@
             <connections>
                 <outlet property="buttonAverage" destination="2Lj-eW-H1G" id="Ywv-Z2-zpa"/>
                 <outlet property="buttonRegister" destination="HdH-e9-Ksn" id="t13-py-SlW"/>
+                <outlet property="fieldID" destination="WI4-5I-UGX" id="0Xz-my-1GQ"/>
                 <outlet property="fieldMath" destination="SuL-bW-Vx2" id="dpD-fk-eSu"/>
                 <outlet property="fieldName" destination="QBp-76-HJm" id="J1E-mf-iRb"/>
                 <outlet property="fieldPhysical" destination="8RA-7A-gYX" id="rYF-QG-bZA"/>
                 <outlet property="fieldScience" destination="9hG-5j-mi6" id="rxa-Ae-Ijn"/>
                 <outlet property="fieldSpanish" destination="Gbx-wh-6s1" id="saz-GY-Yjg"/>
                 <outlet property="labelAverage" destination="sBJ-iS-cqC" id="5dz-kf-X5v"/>
+                <outlet property="labelErrorID" destination="s8V-aO-2bk" id="Jaf-jJ-5lB"/>
                 <outlet property="labelErrorMath" destination="nb3-Fd-v20" id="Xwn-al-Oyx"/>
                 <outlet property="labelErrorName" destination="h2D-lQ-OeN" id="HKH-y6-2g9"/>
                 <outlet property="labelErrorPhysical" destination="qLj-LF-cB4" id="JZC-HG-hnT"/>
@@ -90,14 +92,35 @@
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="FEO-M2-gzz">
                             <rect key="frame" x="4" y="4" width="335" height="533"/>
                             <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="469-pW-bEf">
+                                    <rect key="frame" x="0.0" y="0.0" width="335" height="28"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ID: 1938" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WI4-5I-UGX">
+                                    <rect key="frame" x="0.0" y="28" width="335" height="28"/>
+                                    <color key="backgroundColor" red="0.4039172922" green="0.39437469759999999" blue="1" alpha="0.33687121660000002" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <action selector="actionFieldID:" destination="-1" eventType="editingDidEnd" id="fOI-ta-w8q"/>
+                                    </connections>
+                                </textField>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s8V-aO-2bk">
+                                    <rect key="frame" x="0.0" y="56" width="335" height="28"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nombre del alumno :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uSD-DM-apf">
-                                    <rect key="frame" x="0.0" y="0.0" width="335" height="33.5"/>
+                                    <rect key="frame" x="0.0" y="84" width="335" height="28"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nombre: &quot;Juan Perez&quot;" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QBp-76-HJm">
-                                    <rect key="frame" x="0.0" y="33.5" width="335" height="33"/>
+                                    <rect key="frame" x="0.0" y="112" width="335" height="28.5"/>
                                     <color key="backgroundColor" red="0.4039172922" green="0.39437469759999999" blue="1" alpha="0.33687121660000002" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="textColor" systemColor="systemIndigoColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -107,19 +130,19 @@
                                     </connections>
                                 </textField>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h2D-lQ-OeN">
-                                    <rect key="frame" x="0.0" y="66.5" width="335" height="33.5"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <rect key="frame" x="0.0" y="140.5" width="335" height="28"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Español :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h4e-qx-gQ5">
-                                    <rect key="frame" x="0.0" y="100" width="335" height="33.5"/>
+                                    <rect key="frame" x="0.0" y="168.5" width="335" height="28"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Espańol: 10.0" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gbx-wh-6s1">
-                                    <rect key="frame" x="0.0" y="133.5" width="335" height="33"/>
+                                    <rect key="frame" x="0.0" y="196.5" width="335" height="28"/>
                                     <color key="backgroundColor" red="0.4039172922" green="0.39437469759999999" blue="1" alpha="0.33687121660000002" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="textColor" systemColor="systemIndigoColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -129,19 +152,19 @@
                                     </connections>
                                 </textField>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u7E-Bt-KWq">
-                                    <rect key="frame" x="0.0" y="166.5" width="335" height="33.5"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <rect key="frame" x="0.0" y="224.5" width="335" height="28"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ciencias :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k1z-ci-fk3">
-                                    <rect key="frame" x="0.0" y="200" width="335" height="33"/>
+                                    <rect key="frame" x="0.0" y="252.5" width="335" height="28"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ciencias: 10.0" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9hG-5j-mi6">
-                                    <rect key="frame" x="0.0" y="233" width="335" height="33.5"/>
+                                    <rect key="frame" x="0.0" y="280.5" width="335" height="28"/>
                                     <color key="backgroundColor" red="0.4039172922" green="0.39437469759999999" blue="1" alpha="0.33687121660000002" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="textColor" systemColor="systemIndigoColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -151,19 +174,19 @@
                                     </connections>
                                 </textField>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="16c-mG-VFQ">
-                                    <rect key="frame" x="0.0" y="266.5" width="335" height="33.5"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <rect key="frame" x="0.0" y="308.5" width="335" height="28"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Matematicas" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hsh-3J-CxS">
-                                    <rect key="frame" x="0.0" y="300" width="335" height="33"/>
+                                    <rect key="frame" x="0.0" y="336.5" width="335" height="28"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Matematicas: 10.0" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SuL-bW-Vx2">
-                                    <rect key="frame" x="0.0" y="333" width="335" height="33.5"/>
+                                    <rect key="frame" x="0.0" y="364.5" width="335" height="28"/>
                                     <color key="backgroundColor" red="0.4039172922" green="0.39437469759999999" blue="1" alpha="0.33687121660000002" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="textColor" systemColor="systemIndigoColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -173,19 +196,19 @@
                                     </connections>
                                 </textField>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nb3-Fd-v20">
-                                    <rect key="frame" x="0.0" y="366.5" width="335" height="33.5"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <rect key="frame" x="0.0" y="392.5" width="335" height="28.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fisica :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cl2-oM-YmY">
-                                    <rect key="frame" x="0.0" y="400" width="335" height="33"/>
+                                    <rect key="frame" x="0.0" y="421" width="335" height="28"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Fisica: 10.0" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8RA-7A-gYX">
-                                    <rect key="frame" x="0.0" y="433" width="335" height="33.5"/>
+                                    <rect key="frame" x="0.0" y="449" width="335" height="28"/>
                                     <color key="backgroundColor" red="0.4039172922" green="0.39437469759999999" blue="1" alpha="0.33687121660000002" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="textColor" systemColor="systemIndigoColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -195,14 +218,15 @@
                                     </connections>
                                 </textField>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qLj-LF-cB4">
-                                    <rect key="frame" x="0.0" y="466.5" width="335" height="33"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <rect key="frame" x="0.0" y="477" width="335" height="28"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sBJ-iS-cqC">
-                                    <rect key="frame" x="0.0" y="499.5" width="335" height="33.5"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <rect key="frame" x="0.0" y="505" width="335" height="28"/>
+                                    <color key="backgroundColor" red="0.4039172922" green="0.39437469759999999" blue="1" alpha="0.33687121660000002" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                     <color key="textColor" systemColor="systemIndigoColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>

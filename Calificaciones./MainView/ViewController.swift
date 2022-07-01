@@ -10,17 +10,15 @@ import CoreData
 import SCLAlertView
 
 class ViewController: UIViewController {
-    //MARK: - Outlets
     
+    //MARK: - Outlets
     @IBOutlet weak var tableView:UITableView!
     @IBOutlet weak var buttonToRegister:UIButton!
     @IBOutlet weak var buttonDetail:UIButton!
     @IBOutlet weak var viewFond:UIView!
     @IBOutlet weak var viewTable:UIView!
     
-    
     //MARK: - Private
-    
     private var arrayOfRatings = [Student]()
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
@@ -38,8 +36,8 @@ class ViewController: UIViewController {
         super.viewDidAppear(animated)
         recuperarDatos()
     }
-    //MARK: - Button Actions
     
+    //MARK: - Button Actions
     @IBAction func actionRegister(_ sender:UIButton){
         let vc = RegisterView()
         navigationController?.pushViewController(vc, animated: true)
@@ -51,7 +49,6 @@ class ViewController: UIViewController {
     }
     
     //MARK: - Public Functions
-    
     private func recuperarDatos(){
         do{
             try self.arrayOfRatings = self.context.fetch(Student.fetchRequest())
@@ -66,7 +63,6 @@ class ViewController: UIViewController {
 }
 
 //MARK: - UITableViewDataSource
-
 extension ViewController:UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -83,10 +79,9 @@ extension ViewController:UITableViewDataSource{
         return cell
     }
     
-    
 }
-//MARK: - UITableViewDelegate
 
+//MARK: - UITableViewDelegate
 extension ViewController:UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

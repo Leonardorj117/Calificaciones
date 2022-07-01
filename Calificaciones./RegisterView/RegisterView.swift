@@ -19,6 +19,7 @@ class RegisterView: UIViewController {
     @IBOutlet weak var fieldScience:UITextField!
     @IBOutlet weak var fieldMath:UITextField!
     @IBOutlet weak var fieldPhysical:UITextField!
+    @IBOutlet weak var fieldID:UITextField!
     
     //Labels.
     @IBOutlet weak var labelSuperior:UILabel!
@@ -27,6 +28,7 @@ class RegisterView: UIViewController {
     @IBOutlet weak var labelErrorScience:UILabel!
     @IBOutlet weak var labelErrorMath:UILabel!
     @IBOutlet weak var labelErrorPhysical:UILabel!
+    @IBOutlet weak var labelErrorID:UILabel!
     @IBOutlet weak var labelAverage:UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     
@@ -41,18 +43,20 @@ class RegisterView: UIViewController {
     //MARK: - Private
     
     private let mainView = ViewController()
-    private let context  = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    private var name:String     = String()
-    private var spanish:Double  = Double()
-    private var science:Double  = Double()
-    private var math:Double     = Double()
+    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    private var name:String = String()
+    private var spanish:Double = Double()
+    private var science:Double = Double()
+    private var math:Double = Double()
     private var physical:Double = Double()
-    private var average:Double  = Double()
-    private var statusOkName:Bool     = false
-    private var statusOkSpanish:Bool  = false
-    private var statusOkScience:Bool  = false
-    private var statusOkMath:Bool     = false
+    private var average:Double = Double()
+    private var id:Int32 = Int32()
+    private var statusOkName:Bool = false
+    private var statusOkSpanish:Bool = false
+    private var statusOkScience:Bool = false
+    private var statusOkMath:Bool = false
     private var statusOkPhysical:Bool = false
+    private var statusOkId:Bool = false
     public  var student:Student!
     
     override func viewDidLoad() {
@@ -73,29 +77,38 @@ class RegisterView: UIViewController {
     //MARK: - Actions
     
     //TextFields
+    @IBAction func actionFieldID(_ sender: Any) {
+        self.statusOkId = self.fieldID.validateFieldID(label: self.labelErrorID)
+        self.availableButtos()
+    }
+    
     @IBAction func actionFieldName(_ sender: Any) {
-        self.statusOkName = validateFieldName(TextField: self.fieldName, Label: self.labelErrorName)
+        self.statusOkName = self.fieldName.validateFieldName(Label: self.labelErrorName)
         self.availableButtos()
     }
     @IBAction func actionFieldSpanish(_ sender: Any) {
-        self.statusOkSpanish = validateFieldRating(TextField: self.fieldSpanish, Label: self.labelErrorSpanish)
+        self.statusOkSpanish = self.fieldSpanish.validateFieldRating(Label: self.labelErrorSpanish)
         self.availableButtos()
     }
     @IBAction func actionFieldScience(_ sender: Any) {
-        self.statusOkScience = validateFieldRating(TextField: self.fieldScience, Label: self.labelErrorScience)
+        self.statusOkScience = self.fieldScience.validateFieldRating(Label: self.labelErrorScience)
         self.availableButtos()
     }
     @IBAction func actionFieldMath(_ sender: Any) {
-        self.statusOkMath = validateFieldRating(TextField: self.fieldMath, Label: self.labelErrorMath)
+        self.statusOkMath = self.fieldMath.validateFieldRating(Label: self.labelErrorMath)
         self.availableButtos()
     }
     @IBAction func actionFieldPhysical(_ sender: Any) {
-        self.statusOkPhysical = validateFieldRating(TextField: self.fieldPhysical, Label: self.labelErrorPhysical)
+        self.statusOkPhysical = self.fieldPhysical.validateFieldRating(Label: self.labelErrorPhysical)
         self.availableButtos()
     }
     
     //Buttons
     @IBAction func averageAction(_ sender:UIButton){
+        
+        if let id = self.fieldID.text{
+            self.id = Int32(id) ?? 0
+        }
         
         if let name = self.fieldName.text{
             self.name = name
@@ -123,7 +136,7 @@ class RegisterView: UIViewController {
     
     @IBAction func registerAction(_ sender:UIButton){
         if statusOkName,statusOkSpanish,statusOkScience,statusOkMath,statusOkPhysical{
-            saveStudent()
+            checkRecord(with: self.id, name: self.name)
         }else{
             SCLAlertView().showError("Error", subTitle: "Completa los campos corrctamente para poder continuar.", closeButtonTitle: "Ok", animationStyle: .rightToLeft)
         }
@@ -131,56 +144,7 @@ class RegisterView: UIViewController {
     
     //MARK: - Private Methods.
     
-    private func validateFieldRating(TextField:UITextField,Label:UILabel) -> Bool{
-        let isDouble = isDouble(text: TextField.text!)
-        let rating = Double(TextField.text ?? "0.0")
-        if TextField.text == ""{
-            Label.text = "Ingresa un valor."
-            Label.textColor = .red
-            TextField.layer.borderColor = UIColor.red.cgColor
-            TextField.layer.borderWidth = 1.0
-        }else if !isDouble{
-            Label.text = "No puedes ingresar caracteres."
-            Label.textColor = .red
-            TextField.layer.borderColor = UIColor.red.cgColor
-            TextField.layer.borderWidth = 1.0
-        }else if rating ?? 0.0 < 0.0 || rating ?? 0.0 > 10.0{
-            Label.text = "Ingresa un valor entre 0 y 10"
-            Label.textColor = .red
-            TextField.layer.borderColor = UIColor.red.cgColor
-            TextField.layer.borderWidth = 1.0
-        }else{
-            Label.text = ""
-            TextField.layer.borderColor = UIColor.blue.cgColor
-            TextField.layer.borderWidth = 1.0
-            return true
-        }
-        return false
-    }
-    
-    private func validateFieldName(TextField:UITextField,Label:UILabel) -> Bool{
-        
-        if !validateFieldName(enteredString: self.fieldName.text ?? "") {
-            Label.text = "Ingresa más de 2 caracteres, sin caracteres especiales."
-            Label.textColor = .red
-            TextField.layer.borderColor = UIColor.red.cgColor
-            TextField.layer.borderWidth = 1.0
-        }else if TextField.text! == ""{
-            Label.text = "Ingresa un valor."
-            Label.textColor = .red
-            TextField.layer.borderColor = UIColor.red.cgColor
-            TextField.layer.borderWidth = 1.0
-        }else{
-            Label.text = ""
-            TextField.layer.borderColor = UIColor.systemIndigo.cgColor
-            TextField.layer.borderWidth = 1.0
-            return true
-        }
-        return false
-        
-    }
-    
-    private func saveStudent(){
+    fileprivate func saveStudent(){
         if self.labelAverage.text != ""{
             do{
                 let currentStudent = Student(context: self.context)
@@ -190,14 +154,10 @@ class RegisterView: UIViewController {
                 currentStudent.math = self.math
                 currentStudent.physical = self.physical
                 currentStudent.average = self.average
+                currentStudent.id = self.id
                 try context.save()
                 SCLAlertView().showSuccess("Registrado", subTitle: "Estudiante registrado.", closeButtonTitle: "Aceptar", animationStyle: .bottomToTop)
-                self.fieldName.text = ""
-                self.fieldSpanish.text = ""
-                self.fieldScience.text = ""
-                self.fieldMath.text = ""
-                self.fieldPhysical.text = ""
-                self.labelAverage.text = ""
+                cleanView()
             }catch{
                 SCLAlertView().showError("Error", subTitle: "Error al guardar los datos.", closeButtonTitle: "Aceptar", animationStyle: .bottomToTop)
             }
@@ -205,15 +165,23 @@ class RegisterView: UIViewController {
             SCLAlertView().showInfo("Cuidado", subTitle: "Para continuar tienes que promediar.", animationStyle: .bottomToTop)
         }
     }
-    
-    func validateFieldName(enteredString:String) -> Bool {
-        let validationFormat = "[a-zA-Z\\s]{2,25}+"
-        let fieldPredicate = NSPredicate(format:"SELF MATCHES %@", validationFormat)
-        return fieldPredicate.evaluate(with: enteredString)
+    func checkRecord(with id : Int32, name : String) {
+        do {
+            let request : NSFetchRequest<Student> = Student.fetchRequest()
+            request.predicate = NSPredicate(format: "id == %d  OR name == %@", id, name)
+            let numberOfRecords = try context.count(for: request)
+            
+            if numberOfRecords == 0 {
+                saveStudent()
+            }else{
+                SCLAlertView().showInfo("Registro existente", subTitle: "El id o nombre ya fueron registrados. Por favor ingresa valores nuevos.", closeButtonTitle: "aceptar",animationStyle: .bottomToTop)
+            }
+        } catch {
+            print("Error saving context \(error)")
+        }
     }
     
-    
-    func availableButtos() {
+    fileprivate func availableButtos() {
         if validateAllInputs() {
             buttonAverage.isEnabled = true
             buttonRegister.isEnabled = true
@@ -227,12 +195,22 @@ class RegisterView: UIViewController {
         }
     }
     
-    func validateAllInputs() -> Bool{
+    fileprivate func validateAllInputs() -> Bool{
         var isOk = false
-        if fieldName.text != "" && fieldSpanish.text != "" &&  fieldScience.text != "" && fieldMath.text != "" && fieldPhysical.text != "" {
+        if fieldName.text != "" && fieldSpanish.text != "" &&  fieldScience.text != "" && fieldMath.text != "" && fieldPhysical.text != ""  && fieldID.text != ""{
             isOk = true
         }
         return isOk
+    }
+    
+    fileprivate func cleanView(){
+        self.fieldID.text = ""
+        self.fieldName.text = ""
+        self.fieldSpanish.text = ""
+        self.fieldScience.text = ""
+        self.fieldMath.text = ""
+        self.fieldPhysical.text = ""
+        self.labelAverage.text = ""
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -250,13 +228,7 @@ class RegisterView: UIViewController {
             self.view.frame.origin.y = 0
         }
     }
-    
-    private func isDouble(text:String)->Bool{
-        if Double(text) != nil{
-            return true
-        }else{
-            return false
-        }
-    }
 }
+
+
 

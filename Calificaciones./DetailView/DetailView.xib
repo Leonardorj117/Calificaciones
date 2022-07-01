@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailView" customModule="Calificaciones_" customModuleProvider="target">
             <connections>
                 <outlet property="labelAverage" destination="S3F-gd-MZy" id="Nrk-r5-bAF"/>
+                <outlet property="labelID" destination="kRr-P5-hCO" id="0p1-KL-ft9"/>
                 <outlet property="labelMathScore" destination="NLS-wN-AGK" id="30l-54-jip"/>
                 <outlet property="labelName" destination="Emn-Ge-IT5" id="8N4-b7-YEk"/>
                 <outlet property="labelPhysicalScore" destination="7tK-3q-Nkw" id="QCP-Vu-JQm"/>
@@ -49,79 +50,92 @@
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Y5V-cz-Kh4">
                             <rect key="frame" x="4" y="4" width="335" height="599"/>
                             <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ID:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wSV-EO-qcc">
+                                    <rect key="frame" x="0.0" y="0.0" width="335" height="43"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kRr-P5-hCO">
+                                    <rect key="frame" x="0.0" y="43" width="335" height="42.5"/>
+                                    <color key="backgroundColor" red="0.4039172922" green="0.39437469759999999" blue="1" alpha="0.33687121660000002" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" systemColor="systemIndigoColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nombre:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="igc-qO-2rf">
-                                    <rect key="frame" x="0.0" y="0.0" width="335" height="50"/>
+                                    <rect key="frame" x="0.0" y="85.5" width="335" height="43"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Emn-Ge-IT5">
-                                    <rect key="frame" x="0.0" y="50" width="335" height="50"/>
+                                    <rect key="frame" x="0.0" y="128.5" width="335" height="42.5"/>
                                     <color key="backgroundColor" red="0.40391729222890871" green="0.39437469758900001" blue="1" alpha="0.33687121662872516" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" systemColor="systemIndigoColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Español :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Bu-em-yqM">
-                                    <rect key="frame" x="0.0" y="100" width="335" height="50"/>
+                                    <rect key="frame" x="0.0" y="171" width="335" height="43"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v6U-Tl-75X">
-                                    <rect key="frame" x="0.0" y="150" width="335" height="49.5"/>
+                                    <rect key="frame" x="0.0" y="214" width="335" height="42.5"/>
                                     <color key="backgroundColor" red="0.4039172922" green="0.39437469759999999" blue="1" alpha="0.33687121660000002" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" systemColor="systemIndigoColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ciencias :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ix-gh-F1r">
-                                    <rect key="frame" x="0.0" y="199.5" width="335" height="50"/>
+                                    <rect key="frame" x="0.0" y="256.5" width="335" height="43"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hhp-6Y-yto">
-                                    <rect key="frame" x="0.0" y="249.5" width="335" height="50"/>
+                                    <rect key="frame" x="0.0" y="299.5" width="335" height="43"/>
                                     <color key="backgroundColor" red="0.4039172922" green="0.39437469759999999" blue="1" alpha="0.33687121660000002" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" systemColor="systemIndigoColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Matematicas :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E5t-2x-RQM">
-                                    <rect key="frame" x="0.0" y="299.5" width="335" height="50"/>
+                                    <rect key="frame" x="0.0" y="342.5" width="335" height="42.5"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NLS-wN-AGK">
-                                    <rect key="frame" x="0.0" y="349.5" width="335" height="50"/>
+                                    <rect key="frame" x="0.0" y="385" width="335" height="43"/>
                                     <color key="backgroundColor" red="0.4039172922" green="0.39437469759999999" blue="1" alpha="0.33687121660000002" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" systemColor="systemIndigoColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fisica :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DTG-eB-VLz">
-                                    <rect key="frame" x="0.0" y="399.5" width="335" height="50"/>
+                                    <rect key="frame" x="0.0" y="428" width="335" height="42.5"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7tK-3q-Nkw">
-                                    <rect key="frame" x="0.0" y="449.5" width="335" height="49.5"/>
+                                    <rect key="frame" x="0.0" y="470.5" width="335" height="43"/>
                                     <color key="backgroundColor" red="0.4039172922" green="0.39437469759999999" blue="1" alpha="0.33687121660000002" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" systemColor="systemIndigoColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Promedio final :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lke-se-C9T" userLabel="Promedio final :">
-                                    <rect key="frame" x="0.0" y="499" width="335" height="50"/>
+                                    <rect key="frame" x="0.0" y="513.5" width="335" height="42.5"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S3F-gd-MZy">
-                                    <rect key="frame" x="0.0" y="549" width="335" height="50"/>
+                                    <rect key="frame" x="0.0" y="556" width="335" height="43"/>
                                     <color key="backgroundColor" red="0.4039172922" green="0.39437469759999999" blue="1" alpha="0.33687121660000002" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" systemColor="systemIndigoColor"/>
